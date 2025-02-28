@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interview App</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- jsPDF Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <!-- Start Interview Button and Timer -->
+  <button id="startInterview">Start Interview</button>
+  <div id="timer" class="timer" style="display: none;"></div>
+  
+  <!-- Confirm End Interview Modal -->
+  <div id="confirmEndModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Do you want to end the interview?</h2>
+      <button id="confirmEndBtn" class="apply-btn">End Interview</button>
+      <button id="goBackBtn" class="apply-btn">Go Back</button>
+    </div>
+  </div>
+  
+  <!-- Download Modal -->
+  <div id="downloadModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>The interview is over</h2>
+      <button id="downloadBtn" class="apply-btn">Download Result</button>
+    </div>
+  </div>
+  
+  <!-- Main Application Container -->
+  <div class="app-container">
+    <!-- Left Panel: Avatar Video, Static Image, and Question Text -->
+    <div class="video-panel" id="avatarPanel">
+      <video id="aiAvatar" src="/static/avatar.mp4" muted preload="auto"></video>
+      <img id="avatarImage" src="/static/avatar.png" alt="Avatar">
+      <div id="questionText" class="question-text" style="display: none;"></div>
+    </div>
+    
+    <!-- Right Panel: User Webcam and Control Panel -->
+    <div class="video-panel" id="webcamPanel">
+      <video id="userWebcam" autoplay muted playsinline></video>
+      <div class="control-panel">
+        <button id="muteButton" class="btn-toggle btn-off">
+          <i class="fa-solid fa-microphone-slash"></i>
+        </button>
+        <button id="webcamButton" class="btn-toggle btn-off">
+          <i class="fa-solid fa-video-slash"></i>
+        </button>
+        <button id="endInterviewButton" class="btn-toggle btn-end">
+          <i class="fa-solid fa-stop"></i>
+        </button>
+        <button id="settingsButton" class="btn-toggle btn-settings">
+          <i class="fa-solid fa-cog"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span id="closeSettings" class="close">&times;</span>
+      <h2>Settings</h2>
+      <form id="settingsForm">
+        <div class="form-group">
+          <label for="speechRate">Speech Rate: <span id="speechRateValue">1</span></label>
+          <input type="range" id="speechRate" name="speechRate" min="0.5" max="2" step="0.1" value="1" required>
+        </div>
+        <div class="form-group">
+          <label for="speechVolume">Volume: <span id="speechVolumeValue">1</span></label>
+          <input type="range" id="speechVolume" name="speechVolume" min="0" max="1" step="0.1" value="1" required>
+        </div>
+        <button type="submit" class="apply-btn">Apply</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- External JavaScript -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
